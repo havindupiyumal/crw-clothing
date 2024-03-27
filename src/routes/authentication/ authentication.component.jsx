@@ -5,7 +5,7 @@ import { SignUp } from "../../components/sign-up/sign-up.component";
 
 export const Authentication = () => {
   return (
-    <div>
+    <div className="authentication-container">
       <SignIn />
       <SignUp />
     </div>

@@ -7,6 +7,9 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
+import { FormInput } from "../form-input/form-input.component";
+import { Button } from "../button/button.component";
+
 export const SignUp = () => {
   const [formFields, setFormFields] = useState({
     displayName: "",
@@ -57,11 +60,12 @@ export const SignUp = () => {
   };
 
   return (
-    <div>
-      <h1>Sign up with your email and password</h1>
+    <div className="sign-up-container">
+      <h1>Don't have an account?</h1>
+      <span>Sign up with your email and password</span>
       <form onSubmit={signUpHandler}>
-        <label>Display Name</label>
-        <input
+        <FormInput
+          label="Display Name"
           type="text"
           name="displayName"
           onChange={handleChange}
@@ -69,8 +73,8 @@ export const SignUp = () => {
           required
         />
 
-        <label>Email</label>
-        <input
+        <FormInput
+          label="Email"
           type="email"
           name="email"
           onChange={handleChange}
@@ -78,8 +82,8 @@ export const SignUp = () => {
           required
         />
 
-        <label>Password</label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           name="password"
           min={6}
@@ -88,8 +92,8 @@ export const SignUp = () => {
           required
         />
 
-        <label>Confirm Password</label>
-        <input
+        <FormInput
+          label="Confirm Password"
           type="password"
           name="confirmPassword"
           min={6}
@@ -98,7 +102,7 @@ export const SignUp = () => {
           required
         />
 
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );

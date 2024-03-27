@@ -7,6 +7,9 @@ import {
 
 import "./sign-in.styles.scss";
 
+import { FormInput } from "../form-input/form-input.component";
+import { Button } from "../button/button.component";
+
 export const SignIn = () => {
   const [formFields, setFormFields] = useState({
     email: "",
@@ -21,13 +24,16 @@ export const SignIn = () => {
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
     } catch (error) {
-      console.log(error);
+      alert("email or password not found!!!");
     }
   };
-  const logGoogleUser = async () => {
-    const response = await signInWithGooglePopup();
-    const user = await createUserDocumentFromAuth(response.user);
-    console.log(user);
+  const signInWithGoogle = async () => {
+    try {
+      const response = await signInWithGooglePopup();
+      await createUserDocumentFromAuth(response.user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (event) => {
@@ -38,10 +44,11 @@ export const SignIn = () => {
   return (
     <div className="sign-in-container">
       <div>
-        <h1>Sign up with your email and password</h1>
+        <h1>Already have an account?</h1>
+        <span>Sign up with your email and password</span>
         <form onSubmit={signInHandler}>
-          <label>Email</label>
-          <input
+          <FormInput
+            label="Email"
             type="email"
             name="email"
             onChange={handleChange}
@@ -49,8 +56,8 @@ export const SignIn = () => {
             required
           />
 
-          <label>Password</label>
-          <input
+          <FormInput
+            label="Password"
             type="password"
             name="password"
             min={6}
@@ -58,11 +65,18 @@ export const SignIn = () => {
             value={password}
             required
           />
-
-          <button type="submit">Sign In</button>
+          <div className="buttons-container">
+            <Button type="submit">Sign In</Button>
+            <Button
+              type="button"
+              onClick={signInWithGoogle}
+              buttonType="google"
+            >
+              Google Sign In
+            </Button>
+          </div>
         </form>
       </div>
-      <button onClick={logGoogleUser}>Sign In With Google</button>
     </div>
   );
 };
