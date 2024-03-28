@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
@@ -29,8 +28,7 @@ export const SignIn = () => {
   };
   const signInWithGoogle = async () => {
     try {
-      const response = await signInWithGooglePopup();
-      await createUserDocumentFromAuth(response.user);
+      await signInWithGooglePopup();
     } catch (error) {
       console.log(error);
     }

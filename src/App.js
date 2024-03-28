@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { Route, Routes } from "react-router-dom";
 
 import { NavigationBar } from "./routes/navigation-bar/navigation-bar.component";

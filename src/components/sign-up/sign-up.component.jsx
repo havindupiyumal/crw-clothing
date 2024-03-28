@@ -38,13 +38,8 @@ export const SignUp = () => {
       return;
     }
     try {
-      const userCredentials = await createAuthUserWithEmailAndPassword(
-        formFields
-      );
-      await createUserDocumentFromAuth(
-        userCredentials.user,
-        formFields.displayName
-      );
+      const { user } = await createAuthUserWithEmailAndPassword(formFields);
+      await createUserDocumentFromAuth(user, formFields.displayName);
 
       setFormFields({
         displayName: "",

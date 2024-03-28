@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 
 import { Link, Outlet } from "react-router-dom";
 
-import { auth, signOutAuthUser } from "../../utils/firebase/firebase.utils";
+import { signOutAuthUser } from "../../utils/firebase/firebase.utils";
 
 import "./navigation-bar.styles.scss";
 
 import { ReactComponent as Logo } from "../../assests/crown.svg";
 
-export const NavigationBar = () => {
-  const [currentUser, setCurrentUser] = useState(null);
+import { UserContext } from "../../context/user.context";
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => setCurrentUser(user));
-    return unsubscribe;
-  }, []);
+import { CartIcon } from "../../components/cart-icon/cart-icon.component";
+import { CartDropdown } from "../../components/cart-dropdown/cart-dropdown.component";
+
+export const NavigationBar = () => {
+  const { currentUser } = useContext(UserContext);
 
   const signOutHandler = async () => {
     const confirm = window.confirm("Are you sure?");
@@ -37,14 +37,14 @@ export const NavigationBar = () => {
             {currentUser == null ? (
               "SIGN IN"
             ) : (
-              <span onClick={signOutHandler}>
-                {currentUser.email} (SIGN OUT)
+              <span>
+                {currentUser.email}{" "}
+                <span onClick={signOutHandler}>(SIGN OUT)</span>
               </span>
             )}
           </Link>
-          <Link className="nav-link" to={`/cart`}>
-            CART
-          </Link>
+          <CartIcon />
+          <CartDropdown />
         </div>
       </div>
       <Outlet />
