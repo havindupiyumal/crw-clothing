@@ -9,12 +9,14 @@ import "./navigation-bar.styles.scss";
 import { ReactComponent as Logo } from "../../assests/crown.svg";
 
 import { UserContext } from "../../context/user.context";
+import { CartContext } from "../../context/cart.context";
 
 import { CartIcon } from "../../components/cart-icon/cart-icon.component";
 import { CartDropdown } from "../../components/cart-dropdown/cart-dropdown.component";
 
 export const NavigationBar = () => {
   const { currentUser } = useContext(UserContext);
+  const { toggleCartDropdown } = useContext(CartContext);
 
   const signOutHandler = async () => {
     const confirm = window.confirm("Are you sure?");
@@ -43,7 +45,9 @@ export const NavigationBar = () => {
               </span>
             )}
           </Link>
-          <CartIcon />
+          <span onClick={toggleCartDropdown}>
+            <CartIcon />
+          </span>
           <CartDropdown />
         </div>
       </div>
