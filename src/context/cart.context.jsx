@@ -35,8 +35,7 @@ const addCartItem = (product, cartItems) => {
       ...product,
       quantity: 1,
     };
-    const newCartItems = [...cartItems, newCartItem];
-    return newCartItems;
+    return [...cartItems, newCartItem];
   }
 };
 

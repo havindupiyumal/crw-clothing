@@ -16,7 +16,7 @@ import { CartDropdown } from "../../components/cart-dropdown/cart-dropdown.compo
 
 export const NavigationBar = () => {
   const { currentUser } = useContext(UserContext);
-  const { toggleCartDropdown } = useContext(CartContext);
+  const { toggleCartDropdown, isDropdownOpen } = useContext(CartContext);
 
   const signOutHandler = async () => {
     const confirm = window.confirm("Are you sure?");
@@ -48,7 +48,7 @@ export const NavigationBar = () => {
           <span onClick={toggleCartDropdown}>
             <CartIcon />
           </span>
-          <CartDropdown />
+          {isDropdownOpen && <CartDropdown />}
         </div>
       </div>
       <Outlet />

@@ -8,23 +8,21 @@ import { CartItem } from "../cart-item/cart-item.component";
 import { CartContext } from "../../context/cart.context";
 
 export const CartDropdown = () => {
-  const { isDropdownOpen, cartItems, total } = useContext(CartContext);
-
-  const hidden = isDropdownOpen ? "display" : "hidden";
+  const { cartItems, total } = useContext(CartContext);
 
   return (
-    <div className={`cart-dropdown-container ${hidden}`}>
-      {cartItems.length === 0 ? (
-        <div className="empty-message">
-          <p>No items in the cart</p>
-        </div>
-      ) : (
-        cartItems.map((cartItem) => {
-          return <CartItem key={cartItem.id} cartItem={cartItem} />;
-        })
-      )}
-      {total}
-      <Button>Checkout</Button>
+    <div className="cart-dropdown-container">
+      <div className="cart-items">
+        {cartItems.length ? (
+          cartItems.map((cartItem) => (
+            <CartItem key={cartItem.id} cartItem={cartItem} />
+          ))
+        ) : (
+          <span className="empty-message">Your cart is empty</span>
+        )}
+      </div>
+      <span className="total">Total : ${total}</span>
+      <Button>GO TO CHECKOUT</Button>
     </div>
   );
 };
