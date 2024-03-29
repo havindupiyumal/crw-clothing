@@ -1,5 +1,5 @@
 import { useContext } from "react";
-
+import { Link } from "react-router-dom";
 import "./cart-dropdown.styles.scss";
 
 import { Button } from "../button/button.component";
@@ -22,7 +22,9 @@ export const CartDropdown = () => {
         )}
       </div>
       <span className="total">Total : ${total}</span>
-      <Button>GO TO CHECKOUT</Button>
+      <Link to="/checkout">
+        <Button>GO TO CHECKOUT</Button>
+      </Link>
     </div>
   );
 };
