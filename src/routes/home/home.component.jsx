@@ -1,7 +1,7 @@
-import { CategoriesMenu } from "../../components/categories-menu/categories-menu.component";
+import { Menu } from "../../components/menu/menu.component";
 
 const categories = require("../../categories.json");
 
 export const Home = () => {
-  return <CategoriesMenu categories={categories} />;
+  return <Menu categories={categories} />;
 };

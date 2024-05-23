@@ -1,15 +1,15 @@
-import "./category-item.styles.scss";
+import "./menu-item.styles.scss";
 
-export const CategoryItem = ({ category: { title, imageUrl } }) => {
+export const MenuItem = ({ category: { title, imageUrl } }) => {
   return (
-    <div className="category-container">
+    <div className="menu-container">
       <div
         className="background-image"
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <div className="category-body-container">
+      <div className="menu-body-container">
         <h2>{title}</h2>
         <p>Shop Now</p>
       </div>

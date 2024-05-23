@@ -25,7 +25,7 @@ const addCartItem = (product, cartItems) => {
   if (existingItem) {
     const newCartItems = cartItems.map((cartItem) => {
       if (existingItem.id === cartItem.id) {
-        cartItem.quantity = cartItem.quantity + 1;
+        return { ...cartItem, quantity: cartItem.quantity + 1 };
       }
       return cartItem;
     });
@@ -49,7 +49,7 @@ const reduceCartItem = (product, cartItems) => {
   if (existingItem) {
     const newCartItems = cartItems.map((cartItem) => {
       if (existingItem.id === cartItem.id) {
-        cartItem.quantity = cartItem.quantity - 1;
+        return { ...cartItem, quantity: cartItem.quantity - 1 };
       }
       return cartItem;
     });

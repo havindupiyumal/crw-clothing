@@ -4,7 +4,12 @@ import { Link, Outlet } from "react-router-dom";
 
 import { signOutAuthUser } from "../../utils/firebase/firebase.utils";
 
-import "./navigation-bar.styles.scss";
+import {
+  NavigationBarContainer,
+  NavLinkContainer,
+  NavLink,
+  LogoContainer,
+} from "./navigation-bar.styles.jsx";
 
 import { ReactComponent as Logo } from "../../assests/crown.svg";
 
@@ -27,15 +32,13 @@ export const NavigationBar = () => {
 
   return (
     <>
-      <div className="navigation-bar">
-        <Link className="logo-container" to={`/`}>
+      <NavigationBarContainer>
+        <LogoContainer to={`/`}>
           <Logo className="logo" />
-        </Link>
-        <div className="nav-links-container">
-          <Link className="nav-link" to={`/shop`}>
-            SHOP
-          </Link>
-          <Link className="nav-link" to={`/auth`}>
+        </LogoContainer>
+        <NavLinkContainer>
+          <NavLink to={`/shop`}>SHOP</NavLink>
+          <NavLink to={`/auth`}>
             {currentUser == null ? (
               "SIGN IN"
             ) : (
@@ -44,13 +47,13 @@ export const NavigationBar = () => {
                 <span onClick={signOutHandler}>(SIGN OUT)</span>
               </span>
             )}
-          </Link>
+          </NavLink>
           <span onClick={toggleCartDropdown}>
             <CartIcon />
           </span>
           {isDropdownOpen && <CartDropdown />}
-        </div>
-      </div>
+        </NavLinkContainer>
+      </NavigationBarContainer>
       <Outlet />
     </>
   );
