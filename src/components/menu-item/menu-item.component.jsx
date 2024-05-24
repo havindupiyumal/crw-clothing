@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./menu-item.styles.scss";
 
 export const MenuItem = ({ category: { title, imageUrl } }) => {
@@ -10,7 +11,9 @@ export const MenuItem = ({ category: { title, imageUrl } }) => {
         }}
       />
       <div className="menu-body-container">
-        <h2>{title}</h2>
+        <Link to={`/shop/${title}`}>
+          <h2>{title}</h2>
+        </Link>
         <p>Shop Now</p>
       </div>
     </div>
