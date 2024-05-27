@@ -1,21 +1,20 @@
 import { Link } from "react-router-dom";
-import "./menu-item.styles.scss";
+import {
+  MenuContainer,
+  BackgroundImage,
+  MenuBodyContainer,
+} from "./menu-item.styles.jsx";
 
 export const MenuItem = ({ category: { title, imageUrl } }) => {
   return (
-    <div className="menu-container">
-      <div
-        className="background-image"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      />
-      <div className="menu-body-container">
+    <MenuContainer>
+      <BackgroundImage imageUrl={imageUrl} />
+      <MenuBodyContainer>
         <Link to={`/shop/${title}`}>
           <h2>{title}</h2>
         </Link>
         <p>Shop Now</p>
-      </div>
-    </div>
+      </MenuBodyContainer>
+    </MenuContainer>
   );
 };

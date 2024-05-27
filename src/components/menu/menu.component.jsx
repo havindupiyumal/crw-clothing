@@ -1,13 +1,13 @@
-import "./menu.styles.scss";
+import { CategoriesMenuContainer } from "./menu.styles.jsx";
 
 import { MenuItem } from "../menu-item/menu-item.component";
 
 export const Menu = ({ categories }) => {
   return (
-    <div className="categories-menu-container">
+    <CategoriesMenuContainer>
       {categories.map((category) => {
         return <MenuItem key={category.id} category={category} />;
       })}
-    </div>
+    </CategoriesMenuContainer>
   );
 };

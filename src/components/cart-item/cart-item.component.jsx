@@ -1,12 +1,16 @@
 import { useContext } from "react";
 
-import "./cart-item.styles.scss";
+import {
+  CartItemContainer,
+  CartItemImage,
+  CartItemDetails,
+  CartItemName,
+  MinusIcon,
+  PlusIcon,
+  DeleteIcon,
+} from "./cart-item.styles.jsx";
 
 import { CartContext } from "../../context/cart.context";
-
-import { ReactComponent as Minus } from "../../assests/minus.svg";
-import { ReactComponent as Plus } from "../../assests/plus.svg";
-import { ReactComponent as Delete } from "../../assests/delete.svg";
 
 export const CartItem = ({ cartItem }) => {
   const { name, price, imageUrl, quantity } = cartItem;
@@ -26,36 +30,24 @@ export const CartItem = ({ cartItem }) => {
   const reduceItemFromCartHandler = () => reduceItemFromCart(cartItem);
 
   return (
-    <div className="cart-item-container">
-      <img src={imageUrl} alt={`${name}`} />
-      <div className="item-details">
-        <span className="name">{name}</span>
+    <CartItemContainer>
+      <CartItemImage src={imageUrl} alt={`${name}`} />
+      <CartItemDetails>
+        <CartItemName>{name}</CartItemName>
         <span className="price">
           <span onClick={reduceItemFromCartHandler}>
-            <Minus
-              width={10}
-              height={10}
-              style={{ marginRight: 5, cursor: "pointer" }}
-            />
+            <MinusIcon width={10} height={10} />
           </span>
           {quantity}{" "}
           <span onClick={addItemToCartHandler}>
-            <Plus
-              width={10}
-              height={10}
-              style={{ marginRight: 5, cursor: "pointer" }}
-            />
+            <PlusIcon width={10} height={10} />
           </span>{" "}
           x ${price}{" "}
           <span onClick={removeItemFromCartHandler}>
-            <Delete
-              width={20}
-              height={20}
-              style={{ marginLeft: 20, cursor: "pointer" }}
-            />
+            <DeleteIcon width={20} height={20} />
           </span>
         </span>
-      </div>
-    </div>
+      </CartItemDetails>
+    </CartItemContainer>
   );
 };

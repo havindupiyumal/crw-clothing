@@ -4,10 +4,10 @@ import {
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
-import "./sign-in.styles.scss";
+import { SignInContainer, ButtonContainer } from "./sign-in.styles.jsx";
 
 import { FormInput } from "../form-input/form-input.component";
-import { Button } from "../button/button.component";
+import { Button, BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 export const SignIn = () => {
   const [formFields, setFormFields] = useState({
@@ -40,7 +40,7 @@ export const SignIn = () => {
   };
 
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <div>
         <h1>Already have an account?</h1>
         <span>Sign up with your email and password</span>
@@ -63,18 +63,18 @@ export const SignIn = () => {
             value={password}
             required
           />
-          <div className="buttons-container">
+          <ButtonContainer>
             <Button type="submit">Sign In</Button>
             <Button
               type="button"
               onClick={signInWithGoogle}
-              buttonType="google"
+              buttonType={BUTTON_TYPE_CLASSES.google}
             >
               Google Sign In
             </Button>
-          </div>
+          </ButtonContainer>
         </form>
       </div>
-    </div>
+    </SignInContainer>
   );
 };
