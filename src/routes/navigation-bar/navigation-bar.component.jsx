@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 import { signOutAuthUser } from "../../utils/firebase/firebase.utils";
 
@@ -13,14 +13,16 @@ import {
 
 import { ReactComponent as Logo } from "../../assests/crown.svg";
 
-import { UserContext } from "../../context/user.context";
 import { CartContext } from "../../context/cart.context";
 
 import { CartIcon } from "../../components/cart-icon/cart-icon.component";
 import { CartDropdown } from "../../components/cart-dropdown/cart-dropdown.component";
+import { useSelector } from "react-redux";
+
+import { selectCurrentUser } from "../../store/user/user.selector.js";
 
 export const NavigationBar = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { toggleCartDropdown, isDropdownOpen } = useContext(CartContext);
 
   const signOutHandler = async () => {
