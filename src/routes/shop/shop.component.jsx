@@ -6,7 +6,7 @@ import { CategoriesPreview } from "../categories-preview/categories-preview.comp
 import "./shop.styles.scss";
 import { useEffect } from "react";
 import { getProductsAndCategories } from "../../utils/firebase/firebase.utils";
-import { setCategoriesMap } from "../../store/categories/categories.actions";
+import { setCategoriesArray } from "../../store/categories/categories.actions";
 import { useDispatch } from "react-redux";
 
 export const Shop = () => {
@@ -15,7 +15,8 @@ export const Shop = () => {
   useEffect(() => {
     (async () => {
       try {
-        dispatch(setCategoriesMap(await getProductsAndCategories()));
+        const categoriesArray = await getProductsAndCategories();
+        dispatch(setCategoriesArray(categoriesArray));
       } catch (err) {
         console.log("Error occured when fetching Products");
       }
