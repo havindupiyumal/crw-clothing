@@ -18,9 +18,7 @@ export const Category = () => {
 
   return (
     <Fragment>
-      <Link to={`/${category}`}>
-        <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
-      </Link>
+      <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
       <CategoryContainer>
         {products &&
           products.map((product) => (
