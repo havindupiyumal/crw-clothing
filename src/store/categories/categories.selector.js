@@ -1,6 +1,11 @@
 import { createSelector } from "reselect";
 
-const selectCategoriesArray = (state) => state.categories.categoriesArray;
+const selectCategories = (state) => state.categories;
+
+const selectCategoriesArray = createSelector(
+  [selectCategories],
+  (categories) => categories.categoriesArray
+);
 
 export const selectCategoriesMap = createSelector(
   [selectCategoriesArray],

@@ -3,8 +3,6 @@ import { CART_ACTION_TYPES } from "./cart.types";
 const INITIAL_STATE = {
   isDropdownOpen: false,
   cartItems: [],
-  count: 0,
-  total: 0,
 };
 
 export const cartReducer = (state = INITIAL_STATE, action) => {
