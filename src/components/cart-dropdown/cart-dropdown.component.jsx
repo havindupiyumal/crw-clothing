@@ -10,10 +10,20 @@ import {
 import { Button } from "../button/button.component";
 import { CartItem } from "../cart-item/cart-item.component";
 
-import { CartContext } from "../../context/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cart/cart.selector.js";
+import { toggleCartDropdown } from "../../store/cart/cart.actions.js";
 
 export const CartDropdown = () => {
-  const { cartItems, total, toggleCartDropdown } = useContext(CartContext);
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector(selectCartItems);
+  const total = useSelector(selectCartTotal);
+
+  const toggleCartDropdownHandler = () => dispatch(toggleCartDropdown());
 
   return (
     <CartDropdownContainer>
@@ -27,7 +37,7 @@ export const CartDropdown = () => {
         )}
       </CartItems>
       <Total>Total : ${total}</Total>
-      <Link onClick={() => toggleCartDropdown()} to="/checkout">
+      <Link onClick={toggleCartDropdownHandler} to="/checkout">
         <Button>GO TO CHECKOUT</Button>
       </Link>
     </CartDropdownContainer>

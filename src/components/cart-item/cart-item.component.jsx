@@ -10,24 +10,35 @@ import {
   DeleteIcon,
 } from "./cart-item.styles.jsx";
 
-import { CartContext } from "../../context/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  addItemToCart,
+  removeItemFromCart,
+  reduceItemFromCart,
+} from "../../store/cart/cart.actions";
+
+import { selectCartItems } from "../../store/cart/cart.selector";
 
 export const CartItem = ({ cartItem }) => {
+  const dispatch = useDispatch();
+
   const { name, price, imageUrl, quantity } = cartItem;
 
-  const { removeItemFromCart, addItemToCart, reduceItemFromCart } =
-    useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
 
   const removeItemFromCartHandler = () => {
     const reponse = window.confirm("Do you want to remove " + name);
     if (reponse) {
-      removeItemFromCart(cartItem);
+      dispatch(removeItemFromCart(cartItem, cartItems));
     }
   };
 
-  const addItemToCartHandler = () => addItemToCart(cartItem);
+  const addItemToCartHandler = () =>
+    dispatch(addItemToCart(cartItem, cartItems));
 
-  const reduceItemFromCartHandler = () => reduceItemFromCart(cartItem);
+  const reduceItemFromCartHandler = () =>
+    dispatch(reduceItemFromCart(cartItem, cartItems));
 
   return (
     <CartItemContainer>
