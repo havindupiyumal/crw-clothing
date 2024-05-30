@@ -5,22 +5,18 @@ import { CategoriesPreview } from "../categories-preview/categories-preview.comp
 
 import "./shop.styles.scss";
 import { useEffect } from "react";
-import { getProductsAndCategories } from "../../utils/firebase/firebase.utils";
-import { setCategoriesArray } from "../../store/categories/categories.actions";
+import { fetchCategoriesStart } from "../../store/categories/categories.actions";
 import { useDispatch } from "react-redux";
 
 export const Shop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      try {
-        const categoriesArray = await getProductsAndCategories();
-        dispatch(setCategoriesArray(categoriesArray));
-      } catch (err) {
-        console.log("Error occured when fetching Products");
-      }
-    })();
+    try {
+      dispatch(fetchCategoriesStart());
+    } catch (err) {
+      console.log("Error occured when fetching Products");
+    }
   }, [dispatch]);
 
   return (
