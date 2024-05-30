@@ -14,8 +14,6 @@ export const categoriesReducer = (state = INITIAL_STATE, action) => {
         categoriesArray: payload,
       };
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };

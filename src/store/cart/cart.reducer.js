@@ -19,8 +19,6 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
         isDropdownOpen: !state.isDropdownOpen,
       };
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };
