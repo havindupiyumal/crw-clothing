@@ -1,7 +1,5 @@
 import { Outlet } from "react-router-dom";
 
-import { signOutAuthUser } from "../../utils/firebase/firebase.utils";
-
 import {
   NavigationBarContainer,
   NavLinkContainer,
@@ -18,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector.js";
 import { selectIsCartDropwdownOpen } from "../../store/cart/cart.selector.js";
 import { toggleCartDropdown } from "../../store/cart/cart.actions.js";
+import { signOutStart } from "../../store/user/user.actions.js";
 
 export const NavigationBar = () => {
   const dispatch = useDispatch();
@@ -31,7 +30,7 @@ export const NavigationBar = () => {
   const signOutHandler = async () => {
     const confirm = window.confirm("Are you sure?");
     if (confirm) {
-      await signOutAuthUser();
+      dispatch(signOutStart());
     }
   };
 

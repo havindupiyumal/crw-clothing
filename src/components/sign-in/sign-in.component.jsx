@@ -1,15 +1,18 @@
 import { useState } from "react";
-import {
-  signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword,
-} from "../../utils/firebase/firebase.utils";
 
 import { SignInContainer, ButtonContainer } from "./sign-in.styles.jsx";
 
 import { FormInput } from "../form-input/form-input.component";
 import { Button, BUTTON_TYPE_CLASSES } from "../button/button.component";
+import { useDispatch } from "react-redux";
+import {
+  emailSignInStart,
+  googleSignInStart,
+} from "../../store/user/user.actions.js";
 
 export const SignIn = () => {
+  const dispatch = useDispatch();
+
   const [formFields, setFormFields] = useState({
     email: "",
     password: "",
@@ -21,17 +24,13 @@ export const SignIn = () => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
     } catch (error) {
       alert("email or password not found!!!");
     }
   };
   const signInWithGoogle = async () => {
-    try {
-      await signInWithGooglePopup();
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(googleSignInStart());
   };
 
   const handleChange = (event) => {

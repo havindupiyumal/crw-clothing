@@ -72,14 +72,15 @@ export const createUserDocumentFromAuth = async (
       console.log("Error Creating the User", error);
     }
   }
-  return userSnapshot.data();
+  return userSnapshot;
 };
 
-export const createAuthUserWithEmailAndPassword = async ({
+export const createAuthUserWithEmailAndPassword = async (
   displayName,
   email,
-  password,
-}) => {
+  password
+) => {
+  console.log("Inside Firebase : ", email);
   if (!email || !password) return;
 
   const createdAuthUserCredentials = await createUserWithEmailAndPassword(
@@ -112,11 +113,17 @@ export const getProductsAndCategories = async () => {
   const querySnapshot = await getDocs(q);
 
   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+};
 
-  // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-  //   const { title, items } = docSnapshot.data();
-  //   acc[title.toLowerCase()] = items;
-  //   return acc;
-  // }, {});
-  //return categoryMap;
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
 };
