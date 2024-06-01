@@ -1,12 +1,3 @@
-import { createAction } from "../../utils/reducer/reducer.utils";
-import { CART_ACTION_TYPES } from "./cart.types";
-
-export const createCartReducerAction = (newCartItems) => {
-  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
-    cartItems: newCartItems,
-  });
-};
-
 const doesProductExistInTheCart = (cartItems, product) => {
   const item = cartItems?.filter((cartItem) => cartItem.id === product.id);
   if (item.length > 0) {

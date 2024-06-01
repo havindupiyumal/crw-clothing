@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import {
   emailSignInStart,
   googleSignInStart,
-} from "../../store/user/user.actions.js";
+} from "../../store/user/user.reducer";
 
 export const SignIn = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export const SignIn = () => {
     event.preventDefault();
 
     try {
-      dispatch(emailSignInStart(email, password));
+      dispatch(emailSignInStart({ email, password }));
     } catch (error) {
       alert("email or password not found!!!");
     }

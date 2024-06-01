@@ -15,8 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { selectCurrentUser } from "../../store/user/user.selector.js";
 import { selectIsCartDropwdownOpen } from "../../store/cart/cart.selector.js";
-import { toggleCartDropdown } from "../../store/cart/cart.actions.js";
-import { signOutStart } from "../../store/user/user.actions.js";
+import { toggleCartDropdown } from "../../store/cart/cart.reducer";
+import { signOutStart } from "../../store/user/user.reducer";
 
 export const NavigationBar = () => {
   const dispatch = useDispatch();

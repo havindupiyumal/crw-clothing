@@ -5,7 +5,7 @@ import { CategoriesPreview } from "../categories-preview/categories-preview.comp
 
 import "./shop.styles.scss";
 import { useEffect } from "react";
-import { fetchCategoriesStart } from "../../store/categories/categories.actions";
+import { fetchCategoriesStart } from "../../store/categories/categories.reducer";
 import { useDispatch } from "react-redux";
 
 export const Shop = () => {

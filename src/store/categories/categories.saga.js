@@ -3,8 +3,8 @@ import { getProductsAndCategories } from "../../utils/firebase/firebase.utils";
 import {
   fetchCategoriesFailed,
   fetchCategoriesSuccess,
-} from "./categories.actions";
-import { CATEGORIES_ACTION_TYPES } from "./categories.types";
+  fetchCategoriesStart,
+} from "./categories.reducer";
 
 export function* fetchCategoriesAsync() {
   try {
@@ -16,10 +16,7 @@ export function* fetchCategoriesAsync() {
 }
 
 export function* onFetchCategories() {
-  yield takeLatest(
-    CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START,
-    fetchCategoriesAsync
-  );
+  yield takeLatest(fetchCategoriesStart, fetchCategoriesAsync);
 }
 
 export function* categoriesSaga() {

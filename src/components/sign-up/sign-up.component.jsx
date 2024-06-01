@@ -5,7 +5,7 @@ import { SignUpContainer } from "./sign-up.styles.jsx";
 import { FormInput } from "../form-input/form-input.component";
 import { Button } from "../button/button.component";
 import { useDispatch } from "react-redux";
-import { signUpStart } from "../../store/user/user.actions.js";
+import { signUpStart } from "../../store/user/user.reducer";
 
 export const SignUp = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export const SignUp = () => {
       return;
     }
     try {
-      dispatch(signUpStart(email, password, displayName));
+      dispatch(signUpStart({ email, password, displayName }));
       // setFormFields({
       //   displayName: "",
       //   email: "",

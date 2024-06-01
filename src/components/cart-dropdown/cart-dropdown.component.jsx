@@ -14,7 +14,7 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../store/cart/cart.selector.js";
-import { toggleCartDropdown } from "../../store/cart/cart.actions.js";
+import { toggleCartDropdown } from "../../store/cart/cart.reducer.js";
 
 export const CartDropdown = () => {
   const dispatch = useDispatch();

@@ -4,6 +4,7 @@ import {
   applyMiddleware,
 } from "redux";
 import logger from "redux-logger";
+import { configureStore } from "@reduxjs/toolkit";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
@@ -24,15 +25,20 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const isProduction = process.env.NODE_ENV === "production";
 
-const middlewares = [!isProduction && logger, sagaMiddleware].filter(Boolean);
+const middlewares = [!isProduction && logger].filter(Boolean);
 
 const composeEnhancer =
   (!isProduction && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
-const composedEnhancers = composeEnhancer(applyMiddleware(...middlewares));
-
-export const store = createStore(persistedReducer, {}, composedEnhancers);
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    // adding the saga middleware here
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(sagaMiddleware, middlewares),
+});
 
 sagaMiddleware.run(rootSaga);
 
