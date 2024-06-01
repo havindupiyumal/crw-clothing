@@ -1,8 +1,3 @@
-import {
-  compose,
-  legacy_createStore as createStore,
-  applyMiddleware,
-} from "redux";
 import logger from "redux-logger";
 import { configureStore } from "@reduxjs/toolkit";
 
@@ -26,10 +21,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const isProduction = process.env.NODE_ENV === "production";
 
 const middlewares = [!isProduction && logger].filter(Boolean);
-
-const composeEnhancer =
-  (!isProduction && window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
-  compose;
 
 export const store = configureStore({
   reducer: persistedReducer,
